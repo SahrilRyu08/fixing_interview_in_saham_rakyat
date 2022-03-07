@@ -1,0 +1,22 @@
+create table transaksi(
+    id int,
+    tanggal_older date,
+    status_pelunasan bool,
+    tanggal_pembayaran date,
+    PRIMARY KEY(id)
+)
+
+create table detail_transaksi(
+    id int,
+    id_transaksi int,
+    harga int,
+    jumlah int,
+    subtotal int,
+    PRIMARY KEY (id),
+    FOREIGN KEY (id_transaksi) REFERENCES transaksi(id)
+)
+
+select transaksi.id, transaksi.tanggal_order, transaksi.status_pelunasan, transaksi.tanggal_pembayaran,
+detail_transaksi.subtotal, detail_transaksi.jumlah
+from transaksi
+join detail_transaksi on transaksi.id=detail_transaksi.id;
